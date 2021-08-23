@@ -6,7 +6,10 @@ def index(request):
     return render(request, 'index.html')
 
 def login(request):
-    return HttpResponse("this is login page")
+    return render(request, 'login.html')
 
 def faq(request):
     return render(request, 'faq.html')
+
+def tasks(request):
+    return render(request, 'tasks.html')
