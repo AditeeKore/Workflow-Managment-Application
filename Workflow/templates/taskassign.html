@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+
+{%block title%}Task Assignment{% endblock title%}
+{%block body%}
+
+<div class="container-md p-4 mb-5 ms-5">
+    <form method="post" action="/taskassign">
+        {% csrf_token %}
+        <h3>Enter details for new task</h3>
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="task_no">Task No</label>
+                <input type="text" class="form-control" id="task_no" name="task_no" placeholder="Task No">
+            </div>
+            <div class="form-group col-md-5">
+                <label for="task_name">Task title</label>
+                <input type="text" class="form-control" id="task_name" name="task_name" placeholder="Task title">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-5">
+                <label for="task_desc">Task Description</label>
+                <textarea class="form-control" id="task_desc" name="task_desc" placeholder="Task Description"></textarea>
+            </div>
+            <div class="form-group col-md-5">
+                <label for="assigned_to">Assigned To</label>
+                <input type="text" class="form-control" id="assigned_to" name="assigned_to" placeholder="Assigned To">
+            </div>
+            <div class="form-group col-md-5">
+                <label for="submit_time">Submission Time</label>
+                <input type="time" class="form-control" id="submit_time" name="submit_time" placeholder="Submission Time">
+            </div>
+             <div class="form-group col-md-5">
+                <label for="submit_date">Submission Date</label>
+                <input type="date" class="form-control" id="submit_date" name="submit_date" placeholder="Submission Date">
+            </div>
+            <div class="text-center p-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div clas="padding-bottom">
+</div>
+
+
+{% endblock body%}
