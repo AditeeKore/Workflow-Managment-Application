@@ -23,7 +23,7 @@ def taskassign(request):
         task_desc = request.POST.get('task_desc')
         assigned_to = request.POST.get('assigned_to')
         submit_time = request.POST.get('submit_time')
-        submit_date = request.POST.get('submit_dat')
+        submit_date = request.POST.get('submit_date')
         taskassign=Assigned_tasks(task_no=task_no, task_name=task_name, task_desc=task_desc, assigned_to=assigned_to, 
         submit_time=submit_time, submit_date=submit_date)
         taskassign.save()
