@@ -14,7 +14,8 @@ def faq(request):
     return render(request, 'faq.html')
 
 def tasks(request):
-    return render(request, 'tasks.html')
+    task_list = Assigned_tasks.objects.all()
+    return render(request, 'tasks.html', {'task_list': task_list})
 
 def taskassign(request):
     if request.method == "POST":
@@ -29,6 +30,8 @@ def taskassign(request):
         taskassign.save()
         messages.success(request, 'New task assigned')
     return render(request, 'taskassign.html')
+
+
 
 
 

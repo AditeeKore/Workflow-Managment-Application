@@ -6,7 +6,28 @@
 <h3>TASKS</h3>
 <p></p>
 
+{% for Assigned_tasks in task_list %}
+<div class="card">
+  <h5 class="card-header">Task Number: {{ Assigned_tasks.task_no }}</h5>
+  <div class="card-body">
+    <h5 class="card-title">Task Title: {{ Assigned_tasks.task_name }}</h5>
+    <p class="card-text">Assigned to: {{ Assigned_tasks.assigned_to }}</p>
+    <p class="card-text">Task Description: {{ Assigned_tasks.task_desc }}</p>
+    <p class="card-text">Submit Date: {{ Assigned_tasks.submit_date }}</p>
+    <p class="card-text">Submit Time: {{ Assigned_tasks.submit_time }}</p>
+    <a href="#" class="btn btn-primary">Upload</a>
+  </div>
 </div>
+
+{% endfor %}
+
+
+
+
+
+
+
+{% comment %} </div>
   <div class="row">
   <div class="col-sm-6">
     <div class="card">
@@ -26,7 +47,7 @@
       </div>
     </div>
   </div>
-</div>
+</div>  {% endcomment %}
 
 {% comment %} <p>
   <a class="btn btn-primary" data-bs-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>
