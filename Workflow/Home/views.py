@@ -10,6 +10,9 @@ def index(request):
 def login(request):
     return render(request, 'login.html')
 
+def register(request):
+    return render(request, 'register.html')
+
 def faq(request):
     return render(request, 'faq.html')
 
