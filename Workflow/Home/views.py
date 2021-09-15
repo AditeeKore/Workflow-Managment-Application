@@ -1,7 +1,6 @@
 from django.shortcuts import render , HttpResponse
 from Home.models import Assigned_tasks
 from django.contrib import messages
-from django.contrib.auth.forms import UserCreationForm
 from .models import *
 from .forms import CreateUserForm
 
@@ -17,8 +16,7 @@ def register(request):
     form = CreateUserForm()
     if request=='POST':
         form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
+        form.save()
     
     context={'form':form}
     return render(request, 'register.html',context)
