@@ -12,6 +12,10 @@ def index(request):
 def login(request):
     return render(request, 'login.html')
 
+def mytask(request):
+    return render(request, 'mytask.html')
+
+
 def register(request):
     form = CreateUserForm()
     if request=='POST':
