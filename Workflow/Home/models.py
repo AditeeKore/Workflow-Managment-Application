@@ -11,10 +11,3 @@ class Assigned_tasks(models.Model):
     def __str__(self):
         return self.task_name
     
-class Registration(models.Model):
-    username = models.CharField(max_length=50)
-    email = models.CharField(max_length=50)
-    password1 = models.CharField(max_length=50)
-    password2 = models.CharField(max_length=50)
-    def __str__(self):
-        return self.username

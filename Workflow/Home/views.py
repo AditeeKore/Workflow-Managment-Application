@@ -1,29 +1,54 @@
-from django.shortcuts import render , HttpResponse
+from django.shortcuts import render, redirect, HttpResponse
 from Home.models import Assigned_tasks
 from django.contrib import messages
 from .models import *
-from .forms import CreateUserForm
+from .forms import NewUserForm
+from django.contrib.auth import login, authenticate, logout
+from django.contrib.auth.forms import AuthenticationForm
+
+
 
 
 def index(request):
     # return HttpResponse("this is homepage")
     return render(request, 'index.html')
 
-def login(request):
-    return render(request, 'login.html')
+def userlogin(request):
+    if request.method == 'POST':
+        form = AuthenticationForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                login(request, user)
+                messages.info(request, "You are mnow logged in as {username}.")
+                return redirect('/index')
+            else:
+                messages.error(request, "Invalid username or password.")
+        else:
+            messages.error(request, "Invalid username or password.")
+    form = AuthenticationForm()          
+    return render(request, 'userlogin.html', {"login_form":form})
 
-def mytask(request):
-    return render(request, 'mytask.html')
+def user_logout(request):
+    logout(request)
+    messages.info(request, "You have successfully logged out.")
+    return redirect('/index')
 
 
 def register(request):
-    form = CreateUserForm()
-    if request=='POST':
-        form = CreateUserForm(request.POST)
-        form.save()
-    
-    context={'form':form}
-    return render(request, 'register.html',context)
+    if request.method == 'POST':
+        form = NewUserForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, "Registration successful.")
+            return redirect('/index')
+        messages.error(request, "Registration is unsuccessful.")
+    form = NewUserForm()
+    return render(request, "register.html", {'register_form': form})
+   
 
 def faq(request):
     return render(request, 'faq.html')
@@ -46,7 +71,8 @@ def taskassign(request):
         messages.success(request, 'New task assigned')
     return render(request, 'taskassign.html')
 
-
+def mytask(request):
+    return render(request, 'mytask.html')
 
 
 
