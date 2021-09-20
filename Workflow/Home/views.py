@@ -25,7 +25,7 @@ def userlogin(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, "You are now logged in as {username}.")
+                messages.success(request, "You have successfully logged in!!")
                 return redirect('/index')
             else:
                 messages.error(request, "Invalid username or password.")
