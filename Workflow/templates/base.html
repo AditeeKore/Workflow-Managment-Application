@@ -23,18 +23,19 @@
           <li class="nav-item">
             <a class="nav-link active" aria-current="page" href="/index">Home</a>
           </li>
+          {% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="/tasks">Tasks</a>
-          </li>
+          </li>{% endif %}
           <li class="nav-item">
             <a class="nav-link" href="/faq">FAQs</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="/register">Register</a>
-          </li>
+          </li>{% if user.is_authenticated %}
           <li class="nav-item">
             <a class="nav-link" href="/taskassign">Assign tasks</a>
-          </li>
+          </li>{% endif %}
           </ul>
 
           <ul class="navbar-nav mr-auto">

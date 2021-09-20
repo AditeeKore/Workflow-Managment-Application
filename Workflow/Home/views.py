@@ -5,6 +5,8 @@ from .models import *
 from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.admin.views.decorators import staff_member_required
 
 
 
@@ -53,10 +55,14 @@ def register(request):
 def faq(request):
     return render(request, 'faq.html')
 
+# @login_required(login_url='/admin/login/?next=/admin/')
+# @staff_member_required
 def tasks(request):
     task_list = Assigned_tasks.objects.all()
     return render(request, 'tasks.html', {'task_list': task_list})
 
+# @login_required(login_url='/admin/login/?next=/admin/')
+# @staff_member_required
 def taskassign(request):
     if request.method == "POST":
         task_no = request.POST.get('task_no')
