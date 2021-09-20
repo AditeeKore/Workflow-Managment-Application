@@ -24,7 +24,11 @@
             </div>
             <div class="form-group col-md-5">
                 <label for="assigned_to">Assigned To</label>
-                <input type="text" class="form-control" id="assigned_to" name="assigned_to" placeholder="Assigned To">
+                <select class="form-control" id="assigned_to" name="assigned_to" placeholder="Assigned To">
+                {%for result in User%}
+                <option>{{result.username}}<option>
+                {%endfor%}
+                </select>
             </div>
             <div class="form-group col-md-5">
                 <label for="submit_time">Submission Time</label>
