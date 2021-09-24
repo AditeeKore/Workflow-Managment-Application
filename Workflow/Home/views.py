@@ -80,5 +80,8 @@ def taskassign(request):
 def mytask(request):
     return render(request, 'mytask.html')
 
+def myprofile(request):
+    return render(request, 'myprofile.html')
+
 
 

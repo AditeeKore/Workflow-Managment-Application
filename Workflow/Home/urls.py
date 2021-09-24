@@ -11,6 +11,7 @@ urlpatterns = [
     path("faq", views.faq, name='faq'),
     path("tasks", views.tasks, name='tasks'),
     path("mytask", views.mytask, name='mytask'),
+    path("myprofile", views.myprofile, name='myprofile'),
     path("taskassign", views.taskassign, name='taskassign'),
 
 ]
