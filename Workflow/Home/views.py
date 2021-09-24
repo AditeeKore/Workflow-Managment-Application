@@ -6,7 +6,8 @@ from .forms import NewUserForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.admin.views.decorators import staff_member_required
-from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User, auth
 
 
 
@@ -24,7 +25,7 @@ def userlogin(request):
             user = authenticate(username=username, password=password)
             if user is not None:
                 login(request, user)
-                messages.info(request, "You are mnow logged in as {username}.")
+                messages.success(request, "You have successfully logged in!!")
                 return redirect('/index')
             else:
                 messages.error(request, "Invalid username or password.")
@@ -55,15 +56,16 @@ def register(request):
 def faq(request):
     return render(request, 'faq.html')
 
-# @login_required(login_url='/admin/login/?next=/admin/')
-# @staff_member_required
+@login_required(login_url='/admin/userlogin/?next=/admin/')
+@staff_member_required
 def tasks(request):
     task_list = Assigned_tasks.objects.all()
     return render(request, 'tasks.html', {'task_list': task_list})
 
-# @login_required(login_url='/admin/login/?next=/admin/')
-# @staff_member_required
+@login_required(login_url='/admin/userlogin/?next=/admin/')
+@staff_member_required
 def taskassign(request):
+    dropdown=User.objects.all()
     if request.method == "POST":
         task_no = request.POST.get('task_no')
         task_name = request.POST.get('task_name')
@@ -75,7 +77,7 @@ def taskassign(request):
         submit_time=submit_time, submit_date=submit_date)
         taskassign.save()
         messages.success(request, 'New task assigned')
-    return render(request, 'taskassign.html')
+    return render(request, 'taskassign.html',{"User":dropdown})
 
 def mytask(request):
     return render(request, 'mytask.html')
