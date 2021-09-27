@@ -15,7 +15,9 @@
 {% endfor %}
 {% endif %}
 
- <div>
+
+
+ {% comment %} <div>
  <body style="background-image:url('home4b.png') ; background-position: centre;">
     
       <div style="margin-left:50px; margin-top: 600px;">
@@ -24,7 +26,25 @@
         <a href="myprofile.html"; style="border: 2px solid #fff;margin-left:200px; border-radius: 15px; margin:30px; font-family: 'Arial'; font-size: large; padding: 15px; ">my tasks</a>
      </div>
    </body>
-  </div> 
+  </div>   {% endcomment %}
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <form method="post" action="/mytask">
+        {% csrf_token %}
+        <h5 class="card-title">Card title</h5>
+        <div class="form-row">
+          <div class="form-group col-md-5">
+            <input type="text" class="form-control" id="item" name="item" placeholder="New Task">
+          </div>
+          <div class="text-center p-2">
+            <button type="submit" class="btn btn-outline-secondary my-2 my-sm-0">Add to Task List</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
    
 
 <div class="container-fluid">
