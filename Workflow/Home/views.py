@@ -9,39 +9,21 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, auth
 
 
+
 def mytask(request):
     if request.method == "POST":
         item = request.POST.get('item')
-        mytasks=MyTask(item=item)
-        mytasks.save()
-        all_items = MyTask.objects.all()
+        # completed = request.POST.get('completed')
+        mytask = MyTask(item = item)
+        mytask.save()
         messages.success(request, 'New task created')
-        return render(request, 'mytask.html',{'all_items':all_items})
-
-
-    # if request.method == 'POST':
-    #     # form = MyTaskForm(request.POST or None)
-    #     item = request.POST.get('item' or None)
-    #     completed = request.POST.get('completed' or None)
-    #     mytasks=MyTask(item=item, completed=completed)
-            
-    #     # if form.is_valid():
-    #     #     form.save()
-    #     if mytasks.is_valid():
-    #         mytasks.save()
-    #         all_items = MyTask.objects.all()
-    #         messages.success(request, ('Task has been added to your list'))
-    #         return render(request, 'mytask.html', {'all_items':all_items})
-
-    else:
-        all_items = MyTask.objects.all()
-        return render(request, 'mytask.html', {'all_items':all_items})
+    return render(request, 'mytask.html')
 
         
 
 def index(request):
-    # return HttpResponse("this is homepage")
     return render(request, 'index.html')
+
 
 def userlogin(request):
     if request.method == 'POST':

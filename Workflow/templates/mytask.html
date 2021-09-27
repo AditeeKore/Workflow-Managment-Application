@@ -2,43 +2,12 @@
 
 {%block title%}mytasks {% endblock title%}
 {%block body%}
-<div class='container'>
-  <h3>MY TASKS</h3>
 
-  {% comment %} <div class="form-check">
-    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
-    <label class="form-check-label" for="flexCheckChecked">
-      Checked checkbox
-    </label>
-  </div> {% endcomment %}
- {% if messages %}
-  {% for message in messages %}
-  <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-    {{ message }}
-    <button class="close" data-dismiss="alert">
-      <small><sup>x</sup></small>
-    </button>
-    {{ message }}
-  </div>
-  {% endfor %}
-  {% endif %} 
-
-  {% comment %} <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-        content.</p>
-      <a href="#" class="card-link">Card link</a>
-      <a href="#" class="card-link">Another link</a>
-    </div>
-  </div> {% endcomment %}
-
-  {% comment %} <div class="card" style="width: 18rem;">
+<div class="card" style="width: 18rem;">
     <div class="card-body">
       <form method="post" action="/mytask">
         {% csrf_token %}
-        <h5 class="card-title">Card title</h5>
+        <h5 class="card-title"> My Task</h5>
         <div class="form-row">
           <div class="form-group col-md-5">
             <input type="text" class="form-control" id="item" name="item" placeholder="New Task">
@@ -49,31 +18,7 @@
         </div>
       </form>
     </div>
-  </div> {% endcomment %}
-
-
-
-
-
-  {% comment %} <div>
-    <form class="form-inline" method="POST">
-      {% csrf_token %}
-      {{ form }}
-      <input class="form-control mr-sm-2" type="search" placeholder="Add Task" aria-label="Search" name="item">
-      <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit">Add to Task List
-      </button>
-      <form>
-  </div> {% endcomment %}
-
-  <div>
-
-    {% if all_items %}
-      {% for things in all_items %}
-        {{ things.item }} | {{ things.completed }}
-      {% endfor %}
-    {% endif %}
   </div>
-
 
 
 
