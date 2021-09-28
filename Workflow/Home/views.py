@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, HttpResponse
 from django.contrib import messages
 from .models import *
-from .forms import NewUserForm
+from .forms import NewUserForm, MyTaskForm
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.admin.views.decorators import staff_member_required
@@ -11,13 +11,11 @@ from django.contrib.auth.models import User, auth
 
 
 def mytask(request):
-    if request.method == "POST":
-        item = request.POST.get('item')
-        # completed = request.POST.get('completed')
-        mytask = MyTask(item = item)
-        mytask.save()
-        messages.success(request, 'New task created')
-    return render(request, 'mytask.html')
+    tasks=MyTask.objects.all()
+    form = MyTaskForm(request.POST)
+    form.save()
+    return render(request, 'mytask.html', {"MyTask": tasks , "TaskForm": form})
+    
 
         
 

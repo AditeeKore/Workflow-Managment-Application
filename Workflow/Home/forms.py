@@ -19,6 +19,13 @@ class NewUserForm(UserCreationForm):
 			user.save()
 		return user
 
+class MyTaskForm(forms.Form):
+    class Meta:
+        model = MyTask
+        fields = ("item")
+        
+    
+
 
 
 

@@ -1,11 +1,33 @@
 {% extends 'base.html' %}
 
+{%block title%}Task Assignment{% endblock title%}
+{%block body%}
+{% load crispy_forms_tags %}
+<div class="container-md p-4 mb-5 ms-5">
+    <form method="post" action="/mytask">
+        {% csrf_token %}
+        <h3>Enter details for new task</h3>
+        <div class="form-row">
+            {{ TaskForm|crispy }}
+        </div>
+        <div class="text-center p-2">
+                <button type="submit" class="btn btn-primary">Submit</button>
+        </div>
+    </form>
+</div>
+<div clas="padding-bottom">
+</div>
+
+
+{% endblock body%}
+{% comment %} {% extends 'base.html' %}
+
 {%block title%}mytasks {% endblock title%}
 {%block body%}
 
 <div class="card" style="width: 18rem;">
     <div class="card-body">
-      <form method="post" action="/mytask">
+      <form method="POST" action="/mytask">
         {% csrf_token %}
         <h5 class="card-title"> My Task</h5>
         <div class="form-row">
@@ -19,12 +41,4 @@
       </form>
     </div>
   </div>
-
-
-
-
-
-
-
-
-  {% endblock body%}
+  {% endblock body%} {% endcomment %}
