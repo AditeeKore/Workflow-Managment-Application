@@ -1,7 +1,7 @@
-from django.shortcuts import render, redirect, HttpResponse
+from django.shortcuts import render, redirect, HttpResponse, HttpResponseRedirect
 from django.contrib import messages
 from .models import *
-from .forms import NewUserForm, MyTaskForm
+from .forms import *
 from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.admin.views.decorators import staff_member_required
@@ -9,12 +9,50 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User, auth
 
 
+def mytask(response):
+    return render(response, "mytask.html", {})
 
-def mytask(request):
-    tasks=MyTask.objects.all()
-    form = MyTaskForm(request.POST)
-    form.save()
-    return render(request, 'mytask.html', {"MyTask": tasks , "TaskForm": form})
+def mytasklist(response, id):
+    ls = ToDoList.objects.get(id=id)
+    if ls in response.user.todolist.all():
+	    if response.method == "POST":
+	        if response.POST.get("save"):
+		        for item in ls.item_set.all():
+		            if response.POST.get("c" + str(item.id)) == "clicked":
+		                item.complete = True
+		            else:
+		                item.complete = False
+		            item.save()
+	        elif response.POST.get("newItem"):
+		        txt = response.POST.get("new")
+		        if len(txt) > 2:
+		            ls.item_set.create(text=txt, complete=False)
+		        else:
+		            print("invalid")
+	    return render(response, "mytasklist.html", {"ls":ls})
+    return render(response, "index.html", {})
+
+
+def createmytask(response):
+    if response.method == "POST":
+        form = CreateNewTaskList(response.POST)
+
+        if form.is_valid():
+            n = form.cleaned_data["name"]
+            t = ToDoList(name=n)
+            t.save()
+            response.user.todolist.add(t)
+
+        return HttpResponseRedirect("/%i" %t.id)
+
+    else:
+        form = CreateNewTaskList()
+
+    return render(response, "createmytask.html", {"form":form})
+
+
+
+
     
 
         

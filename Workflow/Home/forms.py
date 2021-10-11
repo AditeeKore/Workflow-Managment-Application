@@ -1,6 +1,6 @@
  
 from django.db.models import fields
-from Home.models import MyTask
+# from Home.models import MyTask
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django import forms
@@ -19,14 +19,9 @@ class NewUserForm(UserCreationForm):
 			user.save()
 		return user
 
-class MyTaskForm(forms.Form):
-    class Meta:
-        model = MyTask
-        fields = ("item")
-        
-    
-
-
+class CreateNewTaskList(forms.Form):
+	name = forms.CharField(label="Name", max_length=200)
+	check = forms.BooleanField(required=False)
 
 
         

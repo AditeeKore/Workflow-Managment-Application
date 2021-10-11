@@ -12,5 +12,8 @@ urlpatterns = [
     path("tasks", views.tasks, name='tasks'),
     path("myprofile", views.myprofile, name='myprofile'),
     path("taskassign", views.taskassign, name='taskassign'),
+    path("createmytask", views.createmytask, name='createmytask'),
     path("mytask", views.mytask, name='mytask'),
+    path("<int:id>", views.mytasklist, name='mytasklist'),
+    
 ]

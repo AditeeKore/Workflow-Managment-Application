@@ -25,6 +25,10 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item">
+            <a class="nav-link" href="/createmytask">Add My Tasks</a>
+          </li>{% endif %}
+          {% if user.is_authenticated %}
+          <li class="nav-item">
             <a class="nav-link" href="/mytask">My Tasks</a>
           </li>{% endif %}
           {% if user.is_authenticated %}
@@ -41,8 +45,6 @@
           <li class="nav-item">
             <a class="nav-link" href="/myprofile">My Profile</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/register">Register</a>
           
           </ul>
 
@@ -55,6 +57,9 @@
             <a class="nav-link" href="#">Welcome, {{user.username}} </a>
           </li>
           {% else %}
+          <li class="nav-item">
+            <a class="nav-link" href="/register">Register</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="/userlogin">Login</a>
           </li>
